@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+    --breakpoint-sm: 30rem;
+    --breakpoint-md: 48rem;
+    --breakpoint-lg: 64rem;
+    --breakpoint-xl: 90rem;
+    --breakpoint-2xl: 160rem;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
