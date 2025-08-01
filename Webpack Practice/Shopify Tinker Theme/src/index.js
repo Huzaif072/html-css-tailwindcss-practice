@@ -1,0 +1,22 @@
+import './styles/styles.css';
+import logo from './assets/Tinker-Logo-Light.png';
+import logo_dark from './assets/Tinker-Logo-Dark.png';
+import banner from './assets/Banner-Image.webp';
+import video_1 from './assets/Tinker-Video-1.mp4';
+import image_1 from './assets/image_42.webp';
+import chargers from './assets/gather-yuzu-44.webp';
+import organizers from './assets/gather-hero-no-logo-809544.jpg';
+import stealheader from './assets/steel-header-1.webp';
+import decor from './assets/objects-2_b5a1bfb7-f107-4ff1-a833-0c86b0013d95-638563.webp';
+import image_6 from './assets/image_6.webp';
+
+document.querySelector('#logoicon').src = logo;
+document.querySelector('#logoicondark').src = logo_dark;
+document.querySelector('#bannerimg').src = banner;
+document.querySelector('#videoSource').src = video_1;
+document.querySelector('#image_1').src = image_1;
+document.querySelector('#chargers').src = chargers;
+document.querySelector('#organizers').src = organizers;
+document.querySelector('#stealheader').src = stealheader;
+document.querySelector('#decor').src = decor;
+document.querySelector('#image6').src = image_6;

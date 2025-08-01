@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="font-montserrat">
+    <div class="flex h-screen">
+
+        <div class="flex-1 px-16 py-7 flex flex-col gap-4">
+            <div class=" flex flex-col">
+                <h1 class="text-3xl font-semibold">Welcome to Design Community</h1>
+                <p>Already have an account? <a class="underline" href="#">Log in</a></p>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-1">
+                    <label class="text-gray-500 text-sm" for="email">Email</label>
+                    <input class="border border-gray-300 rounded-xl py-2.5 px-3" type="email" name="email" id="email" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="text-gray-500 text-sm" for="text">Username</label>
+                    <input class="border border-gray-300 rounded-xl px-3 py-2.5" type="text" name="text" id="text" required>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-1">
+                        <div class="flex justify-between">
+                            <label class="text-gray-500 text-sm" for="password">Password</label>
+                            <div class="flex text-gray-500 text-sm gap-1 items-center">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M19.8825 4.88134L19.1465 4.14539C18.9385 3.9374 18.5545 3.96941 18.3145 4.25736L15.7543 6.80132C14.6023 6.30538 13.3384 6.06538 12.0103 6.06538C8.05822 6.08132 4.63444 8.38529 2.98633 11.6975C2.8903 11.9055 2.8903 12.1614 2.98633 12.3374C3.75426 13.9054 4.90633 15.2015 6.34633 16.1774L4.25034 18.3054C4.01034 18.5454 3.97833 18.9293 4.13838 19.1374L4.87432 19.8733C5.08231 20.0813 5.4663 20.0493 5.7063 19.7613L19.7542 5.71345C20.0582 5.47358 20.0902 5.08962 19.8822 4.88161L19.8825 4.88134ZM12.8583 9.71322C12.5863 9.6492 12.2984 9.56925 12.0264 9.56925C10.6663 9.56925 9.57842 10.6573 9.57842 12.0172C9.57842 12.2892 9.64244 12.5771 9.72239 12.8492L8.65028 13.9052C8.33032 13.3452 8.15433 12.7211 8.15433 12.0172C8.15433 9.88924 9.86636 8.17722 11.9943 8.17722C12.6984 8.17722 13.3224 8.3532 13.8823 8.67316L12.8583 9.71322Z"
+                                        fill="#6b7280" />
+                                    <path
+                                        d="M21.0345 11.6974C20.4745 10.5774 19.7384 9.56945 18.8265 8.75342L15.8505 11.6974V12.0174C15.8505 14.1454 14.1385 15.8574 12.0105 15.8574H11.6905L9.80255 17.7454C10.5066 17.8893 11.2426 17.9854 11.9626 17.9854C15.9147 17.9854 19.3385 15.6814 20.9866 12.3532C21.1306 12.1292 21.1306 11.9053 21.0345 11.6973L21.0345 11.6974Z"
+                                        fill="#6b7280" />
+                                </svg>
+                                <p>Hide</p>
+                            </div>
+                        </div>
+                        <input class="border border-gray-300 rounded-xl px-3 py-2.5" type="password" name="password"
+                            id="password" required>
+                    </div>
+                    <div class="px-4">
+                        <ul class="grid grid-cols-3 list-disc text-xs text-gray-400 marker:text-base">
+                            <li>Use 8 or more characters</li>
+                            <li>One Uppercase character</li>
+                            <li>One lowercase character</li>
+                            <li>One special character</li>
+                            <li>One number</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-sm flex gap-2 items-start">
+                <input type="checkbox" name="checkbox" id="checkbox">
+                <label for="checkbox">I want to receive emails about the product, feature updates, events, and marketing promotions.</label>
+            </div>
+
+            <div class="text-sm">
+                <p>By creating an account, you agree to the <a class="underline" href="#">Terms of use</a> and <a class="underline" href="#">Privacy Policy</a>.</p>
+            </div>
+
+            <div class="flex flex-col items-start gap-2">
+                <button class="border rounded-full px-8 py-3 bg-gray-400 text-white">Create an account</button>
+                <p class="text-sm">Already have an account? <a class="underline" href="#">Log in</a></p>
+            </div>
+        </div>
+
+        <div class="flex-1 max-w-[50%]">
+            <div class="w-full h-full">
+                <img class="w-full h-full object-cover" id="image1" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
