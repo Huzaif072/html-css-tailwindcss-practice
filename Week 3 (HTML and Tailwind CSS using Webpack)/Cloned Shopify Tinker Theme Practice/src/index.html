@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <link rel="icon" type="image/png" href="https://cdn.shopify.com/static/shopify-favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="font-roboto">
+    <!-- Announcement Bar -->
+    <div class="bg-[#fdc656] px-4 md:px-10 py-3 text-center text-sm">
+        <p class="cursor-pointer">Uplevel your office with new decor</p>
+    </div>
+
+    <div class="relative h-[33rem] sm:h-[18rem] lg:h-[30rem] w-full">
+        <!-- Banner Image -->
+        <img class="object-cover w-full h-full brightness-[0.8] cursor-pointer" id="bannerimg" alt="Tinker Logo">
+        <!-- Header -->
+        <header
+            class="absolute top-0 w-full px-4 md:px-10 py-5 md:py-7 flex justify-between items-center transition hover:bg-white duration-100 z-10 group">
+
+            <div class="flex justify-between items-center gap-6 md:hidden">
+                <!-- Hamburger Icon -->
+                <svg class="text-white transition duration-100 group-hover:text-black" width="14" height="14"
+                    viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3.5H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                    </path>
+                    <path d="M1 10.5H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                    </path>
+                </svg>
+                <!-- Search Icon -->
+                <svg class="text-white transition duration-100 group-hover:text-black" width="22" height="22"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+                    <circle cx="9" cy="9" r="4.75" stroke="currentColor" stroke-width="1.5"></circle>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="m12.5 12.5 3.25 3.25"></path>
+                </svg>
+            </div>
+
+            <!-- Tinker Logo -->
+            <div class="relative group w-[100px] h-auto cursor-pointer">
+                <img class="inset-0 transition duration-100 group-hover:opacity-0" id="logoicon" alt="Tinker">
+                <img class="absolute inset-0 opacity-0 transition duration-100 group-hover:opacity-100"
+                    id="logoicondark" alt="Tinker">
+            </div>
+
+            <!-- Navigation Bar -->
+            <nav
+                class="hidden md:flex justify-between text-white transition duration-100 group-hover:text-black gap-5 text-sm">
+                <a class="tracking-wider cursor-pointer hover:underline underline-offset-4" href="#">Productivity</a>
+                <a class="tracking-wider cursor-pointer hover:underline underline-offset-4" href="#">Organizers</a>
+                <a class="tracking-wider cursor-pointer hover:underline underline-offset-4" href="#">Chargers</a>
+                <a class="tracking-wider cursor-pointer hover:underline underline-offset-4" href="#">Decor</a>
+            </nav>
+
+            <div class="flex justify-between items-center gap-6 cursor-pointer">
+                <!-- Search Icon -->
+                <svg class="hidden md:block text-white transition duration-100 group-hover:text-black hover:scale-105" width="22"
+                    height="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+                    <circle cx="9" cy="9" r="4.75" stroke="currentColor" stroke-width="1.5"></circle>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="m12.5 12.5 3.25 3.25"></path>
+                </svg>
+                <!-- User Icon -->
+                <svg class="text-white transition duration-100 group-hover:text-black hover:scale-105" width="22" height="22"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="6.5" r="2.75" stroke="currentColor" stroke-width="1.5">
+                    </circle>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="m5.172 14.591-.437.786a.588.588 0 0 0 .514.873h9.502a.588.588 0 0 0 .514-.873l-.437-.786a5.523 5.523 0 0 0-9.656 0">
+                    </path>
+                </svg>
+                <!-- Cart Icon -->
+                <svg class="text-white transition duration-100 group-hover:text-black hover:scale-105" width="22" height="22"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M3.392 6.875h13.216v8.016c0 .567-.224 1.112-.624 1.513-.4.402-.941.627-1.506.627H5.522a2.13 2.13 0 0 1-1.506-.627 2.15 2.15 0 0 1-.624-1.513zM8.818 2.969h2.333c.618 0 1.211.247 1.649.686a2.35 2.35 0 0 1 .683 1.658v1.562H6.486V5.313c0-.622.246-1.218.683-1.658a2.33 2.33 0 0 1 1.65-.686">
+                    </path>
+                </svg>
+            </div>
+        </header>
+        <!-- Banner Text -->
+        <section
+            class="absolute bottom-0 flex flex-col md:flex-row gap-4 items-center xl:items-end justify-between text-white px-4 md:px-10 py-3 md:py-6 z-10 cursor-pointer">
+            <div class="w-full">
+                <h1 class="text-2xl font-extralight tracking-tight lg:tracking-tighter italic font-playFair">Introducing
+                </h1>
+                <h2
+                    class="text-[1.7rem] lg:text-[2.30rem] transform scale-y-125 lg:scale-y-140 [word-spacing:0.2rem] tracking-tighter md:tracking-normal font-playFair">
+                    Our Newest Arrivals</h2>
+            </div>
+            <div class="pb-3 md:pt-5 xl:pl-40 leading-tight w-full">
+                <p class="text-sm tracking-wide">
+                    Bring order to the chaos. When all your tech essentials have a dedicated spot on your desk, you
+                    don't have to waste any time searching for them.
+                </p>
+            </div>
+        </section>
+    </div>
+    <!-- First Heading -->
+    <div class="px-7 pt-12 pb-8 md:pb-6 lg:pb-8 flex flex-wrap justify-center text-center">
+        <h2
+            class="font-playFair transform scale-y-125 text-3xl lg:text-4xl font-thin tracking-tighter lg:tracking-normal [word-spacing:0.1rem]">
+            Make
+            Your Workspace Yours</h2>
+    </div>
+
+    <!-- First Flex Container -->
+    <section class="bg-[#faf9f1] flex flex-col md:flex-row md:flex-wrap">
+        <!-- First Video -->
+        <div class="flex-1 w-[100vw]">
+            <video autoplay playsinline loop muted controls controlsList="nofullscreen" id="videoSource"
+                class="w-full h-full object-cover">
+            </video>
+        </div>
+        <!-- Second Product -->
+        <div class="flex-1 px-4 md:px-0 py-8 flex flex-col items-center">
+            <!-- Product Image -->
+            <div class="md:px-10">
+                <img class="w-full h-full object-cover" id="image_1">
+            </div>
+            <!-- Product Text -->
+            <div
+                class="px-4 md:px-10 pt-5 flex sm:max-w-[25rem] flex-col gap-6 justify-center items-center text-[#41403e]">
+                <h3 class="font-playFair text-2xl transform text-center scale-y-125">Productivity Essentials</h3>
+                <p class="text-center leading-tight">
+                    <span class="text-sm font-normal tracking-wide">
+                        Objects that partner with your digital tools so you can focus on your most important work.
+                    </span>
+                </p>
+                <button
+                    class="border px-6 py-3.5 font-normal text-sm rounded-full bg-[#c3cca6] text-black transition hover:bg-black hover:text-white duration-150">Shop
+                    Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second Heading -->
+    <div class="px-7 pt-8 lg:pt-12 pb-8 flex flex-wrap justify-center text-center">
+        <h2
+            class="font-playFair transform scale-y-125 text-3xl lg:text-4xl font-thin tracking-tighter lg:tracking-normal [word-spacing:0.1rem]">
+            Shop
+            by Collection</h2>
+    </div>
+
+    <!-- Second Flex Container -->
+    <section class="flex md:flex-wrap px-4 md:px-10 pt-1 pb-12 overflow-x-auto scrollbar-hide gap-3">
+
+        <!-- Product 1 -->
+        <div
+            class="relative flex-none md:flex-1 lg:flex-none min-w-[12rem] w-[60vw] md:w-full lg:w-[35%] h-[10rem] md:h-[18rem] transform transition duration-500 hover:-translate-y-1 cursor-pointer">
+            <!-- Product Image -->
+            <div class="w-full h-full rounded-lg overflow-hidden">
+                <img class="w-full h-full object-cover" id="chargers" alt="Chargers">
+            </div>
+            <!-- Product Text -->
+            <div class="absolute top-3 left-7 text-lg z-10 text-white">
+                <p>Chargers</p>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div
+            class="relative flex-none md:flex-1 min-w-[12rem] w-[60vw] md:w-full h-[10rem] md:h-[18rem] transform transition duration-500 hover:-translate-y-1 cursor-pointer">
+            <!-- Product Image -->
+            <div class="w-full h-full rounded-lg overflow-hidden">
+                <img class="w-full h-full object-cover" id="organizers" alt="Organizers">
+            </div>
+            <!-- Product Text -->
+            <div class="absolute top-3 left-7 text-lg z-10 text-white">
+                <p>Organizers</p>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div
+            class="relative flex-none min-w-[12rem] w-[60vw] md:w-full lg:w-[64.3%] h-[10rem] md:h-[18rem] transform transition duration-500 hover:-translate-y-1 cursor-pointer">
+            <!-- Product Image -->
+            <div class="w-full h-full rounded-lg overflow-hidden">
+                <img class="w-full h-full object-cover" id="stealheader" alt="Bestsellers">
+            </div>
+            <!-- Product Text -->
+            <div class="absolute top-3 left-7 text-lg z-10 text-white">
+                <p>Bestsellers</p>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div
+            class="relative flex-none min-w-[12rem] w-[60vw] md:w-full lg:w-[34.3%] h-[10rem] md:h-[18rem] transform transition duration-500 hover:-translate-y-1 cursor-pointer">
+            <!-- Product Image -->
+            <div class="w-full h-full rounded-lg overflow-hidden">
+                <img class="w-full h-full object-cover" id="decor" alt="Decor">
+            </div>
+            <!-- Product Text -->
+            <div class="absolute top-3 left-7 text-lg z-10 text-white">
+                <p>Decor</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Third Flex Container -->
+    <section class="bg-[#f1ede7] flex flex-col md:flex-row lg:h-[14rem] xl:h-[12rem]">
+        <!-- First Image -->
+        <div class="w-full overflow-hidden">
+            <img class="object-cover w-full h-full" id="image6">
+        </div>
+        <!-- Second Portion -->
+        <div class="px-4 md:px-10 py-8 w-full flex flex-col justify-center gap-8">
+            <div class="pr-15 lg:pr-20 w-full">
+                <h3 class="flex flex-wrap font-playFair transform scale-y-125 text-2xl leading-tight">Join our
+                    Newsletter — Get
+                    Updates, Offers and Invites.</h3>
+            </div>
+            <div class="flex items-center gap-2">
+                <input class="flex-2 px-6 w-full py-4 min-w-0 text-sm rounded-full placeholder:text-[#5e5e5e] hover:bg-[#f5f5f5]"
+                    type="email" placeholder="Email address">
+                <div class="flex justify-center items-center w-12 h-12 px-3 py-3 bg-[#c3cca6] border rounded-full group hover:bg-black cursor-pointer">
+                    <svg class="group-hover:text-white" width="24" height="24" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false"
+                        aria-hidden="true">
+
+                        <path clip-rule="evenodd"
+                            d="m11.246 5.31759c.0322-.07821.0833-.14723.1486-.20093.0654-.0537.143-.09041.2259-.10686.083-.01645.1688-.01214.2497.01257.0808.0247.1544.06902.214.12902l4.104 4.104c.0478.04765.0857.10426.1115.16659.0259.06232.0392.12913.0392.19661 0 .06747-.0133.13429-.0392.19661-.0258.06233-.0637.11893-.1115.16659l-4.104 4.10401c-.0963.0963-.227.1504-.3632.1504s-.2669-.0541-.3632-.1504-.1504-.227-.1504-.3632.0541-.2669.1504-.3632l3.2288-3.2278h-11.0736c-.13606 0-.26654-.0541-.36275-.15027-.0962-.0962-.15025-.22669-.15025-.36274 0-.13606.05405-.26654.15025-.36275.09621-.0962.22669-.15025.36275-.15025h11.0736l-3.2288-3.2278c-.0721-.07178-.1212-.16335-.1411-.2631s-.0097-.20316.0293-.2971z"
+                            fill="currentColor" fill-rule="evenodd"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#adc4c2]">
+        <div
+            class="px-4 md:px-10 md:pr-36 lg:pr-56 xl:pr-80 py-8 flex flex-col md:flex-row justify-between gap-7 md:gap-15">
+            <!-- Shop -->
+            <div class="flex flex-col gap-6">
+                <h3 class="text-2xl transform scale-y-125 font-playFair">Shop</h3>
+                <div>
+                    <ul class="flex flex-col gap-3 text-sm font-light">
+                        <li class="cursor-pointer">Search</li>
+                        <li class="cursor-pointer">Bestsellers</li>
+                        <li class="cursor-pointer">Organizers</li>
+                        <li class="cursor-pointer">Decor</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Help -->
+            <div class="flex flex-col gap-6">
+                <h3 class="text-2xl transform scale-y-125 font-playFair">Help</h3>
+                <div>
+                    <ul class="flex flex-col gap-3 text-sm font-light">
+                        <li class="cursor-pointer">FAQ</li>
+                        <li class="cursor-pointer">Policies</li>
+                        <li class="cursor-pointer">Contact us</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="flex flex-col gap-6">
+                <h3 class="text-2xl transform scale-y-125 font-playFair">About</h3>
+                <div>
+                    <ul class="flex flex-col gap-3 text-sm font-light">
+                        <li class="cursor-pointer">Journal</li>
+                        <li class="cursor-pointer">Our story</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Stay Connected -->
+            <div class="flex flex-col gap-6">
+                <h3 class="text-2xl transform scale-y-125 font-playFair">Stay Connected</h3>
+                <div>
+                    <ul class="flex flex-wrap gap-3">
+                        <!-- Facebook Icon -->
+                        <li>
+                            <svg class="cursor-pointer" aria-hidden="true"
+                                focusable="false" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                viewBox="0 0 20 20">
+                                <path
+                                    d="M18 10.049C18 5.603 14.419 2 10 2c-4.419 0-8 3.603-8 8.049C2 14.067 4.925 17.396 8.75 18v-5.624H6.719v-2.328h2.03V8.275c0-2.017 1.195-3.132 3.023-3.132.874 0 1.79.158 1.79.158v1.98h-1.009c-.994 0-1.303.621-1.303 1.258v1.51h2.219l-.355 2.326H11.25V18c3.825-.604 6.75-3.933 6.75-7.951Z">
+                                </path>
+                            </svg>
+                        </li>
+                        <!-- Instagram Icon -->
+                        <li>
+                            <svg class="cursor-pointer" aria-hidden="true"
+                                focusable="false" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M13.23 3.492c-.84-.037-1.096-.046-3.23-.046-2.144 0-2.39.01-3.238.055-.776.027-1.195.164-1.487.273a2.43 2.43 0 0 0-.912.593 2.486 2.486 0 0 0-.602.922c-.11.282-.238.702-.274 1.486-.046.84-.046 1.095-.046 3.23 0 2.134.01 2.39.046 3.229.004.51.097 1.016.274 1.495.145.365.319.639.602.913.282.282.538.456.92.602.474.176.974.268 1.479.273.848.046 1.103.046 3.238.046 2.134 0 2.39-.01 3.23-.046.784-.036 1.203-.164 1.486-.273.374-.146.648-.329.921-.602.283-.283.447-.548.602-.922.177-.476.27-.979.274-1.486.037-.84.046-1.095.046-3.23 0-2.134-.01-2.39-.055-3.229-.027-.784-.164-1.204-.274-1.495a2.43 2.43 0 0 0-.593-.913 2.604 2.604 0 0 0-.92-.602c-.284-.11-.703-.237-1.488-.273ZM6.697 2.05c.857-.036 1.131-.045 3.302-.045 1.1-.014 2.202.001 3.302.045.664.014 1.321.14 1.943.374a3.968 3.968 0 0 1 1.414.922c.41.397.728.88.93 1.414.23.622.354 1.279.365 1.942C18 7.56 18 7.824 18 10.005c0 2.17-.01 2.444-.046 3.292-.036.858-.173 1.442-.374 1.943-.2.53-.474.976-.92 1.423a3.896 3.896 0 0 1-1.415.922c-.51.191-1.095.337-1.943.374-.857.036-1.122.045-3.302.045-2.171 0-2.445-.009-3.302-.055-.849-.027-1.432-.164-1.943-.364a4.152 4.152 0 0 1-1.414-.922 4.128 4.128 0 0 1-.93-1.423c-.183-.51-.329-1.085-.365-1.943C2.009 12.45 2 12.167 2 10.004c0-2.161 0-2.435.055-3.302.027-.848.164-1.432.365-1.942a4.44 4.44 0 0 1 .92-1.414 4.18 4.18 0 0 1 1.415-.93c.51-.183 1.094-.33 1.943-.366Zm.427 4.806a4.105 4.105 0 1 1 5.805 5.805 4.105 4.105 0 0 1-5.805-5.805Zm1.882 5.371a2.668 2.668 0 1 0 2.042-4.93 2.668 2.668 0 0 0-2.042 4.93Zm5.922-5.942a.958.958 0 1 1-1.355-1.355.958.958 0 0 1 1.355 1.355Z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </li>
+                        <!-- Tiktok Icon -->
+                        <li>
+                            <svg class="cursor-pointer" aria-hidden="true"
+                                focusable="false" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                viewBox="0 0 20 20">
+                                <path
+                                    d="M10.511 1.705h2.74s-.157 3.51 3.795 3.768v2.711s-2.114.129-3.796-1.158l.028 5.606A5.073 5.073 0 1 1 8.213 7.56h.708v2.785a2.298 2.298 0 1 0 1.618 2.205L10.51 1.705Z">
+                                </path>
+                            </svg>
+                        </li>
+                        <!-- X Icon -->
+                        <li>
+                            <svg class="cursor-pointer" aria-hidden="true"
+                                focusable="false" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M7.27301 2.80005L10.8 7.82205L15.218 2.80005H16.986L11.586 8.93905L17.385 17.193H12.727L8.99701 11.883L4.32601 17.193H2.55801L8.21201 10.766L2.61501 2.80005H7.27301ZM13.515 15.925L5.07001 4.10905H6.47501L14.921 15.925H13.515Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col px-4 md:px-10 pb-8 gap-5">
+            <hr class="border-black">
+
+            <p class="font-light text-gray-800 text-xs text-center md:text-start cursor-pointer">&copy; 2025 Tinker, Powered by Shopify
+            </p>
+        </div>
+
+    </footer>
+</body>
+
+</html>
