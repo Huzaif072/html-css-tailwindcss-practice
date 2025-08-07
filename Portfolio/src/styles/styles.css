@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'BROOCK';
+    src: url('/src/assets/BroockRegular-j9n69.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
