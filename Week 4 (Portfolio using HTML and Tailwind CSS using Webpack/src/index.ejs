@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Huzaif Amir - Portfolio</title>
+    <link rel="icon" type="image/png" href="./assets/favicon.png">   
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="font-montserrat bg-[#f2f4f5] dark:bg-darkBg transition-colors duration-300">
+    <!-- Header -->
+    <header class="py-5 px-5 md:px-10 lg:px-20 flex justify-between items-center z-10">
+        <%- include('components/header') %>
+    </header>
+
+    <main class="px-4 md:px-12 lg:px-20">
+        <%- include('components/mainbanner') %>
+
+        <%- include('components/about') %>
+        
+        <%- include('components/services') %>
+
+        <%- include('components/projects') %>
+        
+    </main>
+
+    <footer class="">
+        <%- include('components/footer') %>
+    </footer>
+</body>
+
+</html>

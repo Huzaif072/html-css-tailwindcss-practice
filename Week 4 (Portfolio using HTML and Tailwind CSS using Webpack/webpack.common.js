@@ -15,6 +15,10 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.ejs$/,
+                use: ['html-loader', 'ejs-plain-loader']
+            },
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
@@ -32,9 +36,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Muhammad Huzaif Amir - Portfolio',
+            template: path.resolve(__dirname, 'src/index.ejs'),
             filename: 'index.html',
-            template: path.resolve(__dirname, 'src/index.html'),
         }),
         new CopyWebpackPlugin({
             patterns: [
