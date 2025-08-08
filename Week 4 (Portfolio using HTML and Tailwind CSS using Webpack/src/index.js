@@ -15,6 +15,32 @@ document.querySelector('#ai_chatbots').src = ai_chatbots;
 document.querySelector('#image_6').src = image_6;
 document.querySelector('#image_7').src = image_7;
 document.querySelector('#image_8').src = image_8;
-document.querySelector('#image_9').src = image_6;
-document.querySelector('#image_10').src = image_6;
-document.querySelector('#image_11').src = image_6;
+// document.querySelector('#image_9').src = image_6;
+// document.querySelector('#image_10').src = image_6;
+// document.querySelector('#image_11').src = image_6;
+
+const html = document.documentElement;
+const darkToggleBtn = document.getElementById('dark-toggle-btn');
+
+if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+}
+else if (localStorage.getItem('theme') === 'light') {
+    html.classList.remove('dark');
+}
+else {
+    if (window.matchMedia('(prefers-color-scheme: dark').matches) {
+        html.classList.add('dark');
+    }
+}
+
+darkToggleBtn.addEventListener('click', () => {
+    html.classList.toggle('dark');
+
+    if (html.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+    }
+    else {
+        localStorage.setItem('theme', 'light');
+    }
+})

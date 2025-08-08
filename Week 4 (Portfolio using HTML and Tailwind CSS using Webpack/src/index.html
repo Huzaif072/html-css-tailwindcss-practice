@@ -15,7 +15,7 @@
         rel="stylesheet">
 </head>
 
-<body class="font-montserrat bg-[#f2f4f5] dark:bg-darkBg">
+<body class="font-montserrat bg-[#f2f4f5] dark:bg-darkBg transition-colors duration-300">
     <!-- Header -->
     <header class="py-5 px-5 md:px-10 lg:px-20 flex justify-between items-center z-10">
         <!-- Hamburger Icon -->
@@ -63,7 +63,7 @@
         <!-- Button -->
         <div class="flex gap-2 md:gap-5">
             <!-- Dark Mode Button -->
-            <button
+            <button id="dark-toggle-btn"
                 class="hidden md:flex justify-center items-center px-2 py-2 rounded-full bg-[#fff] dark:bg-[#4f4e4e] hover:scale-105 transition duration-300">
                 <svg class="dark:text-white" width="24" height="24" viewBox="0 0 48 48" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -520,7 +520,7 @@
                 <div class="flex flex-col gap-4">
                     <!-- Gmail -->
                     <a class="border py-2 px-4 border-gray-400 rounded-lg text-gray-600 dark:text-white hover:border-[#0f90e6] flex gap-2 text-sm items-center"
-                        href="#">
+                        href="mailto:alih95745@gmail.com">
                         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_134_163)">
                                 <path
