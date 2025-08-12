@@ -59,31 +59,55 @@
         <form class="flex-1 dark:text-white w-full flex flex-col gap-4">
             <!-- Name -->
             <div class="flex flex-col gap-2">
-                <label class="text-sm font-semibold" for="name">Name</label>
+                <label class="text-sm font-semibold" for="name">Full Name</label>
                 <input class="text-xs border dark:bg-transparent py-2 px-4 outline-[#0f90e6] rounded-lg border-gray-300"
-                    type="text" name="name" id="name" placeholder="Full Name" required minlength="3">
+                    type="text" name="name" id="name" placeholder="Muhammad Huzaif Amir" required minlength="3"
+                    maxlength="50" title="Name must be between 3 and 50 characters.">
             </div>
             <!-- Email -->
             <div class="flex flex-col gap-2">
                 <label class="text-sm font-semibold" for="email">Email</label>
                 <input class="text-xs border dark:bg-transparent outline-[#0f90e6] py-2 px-4 rounded-lg border-gray-300"
-                    type="email" name="email" id="email" placeholder="example@gmail.com" required>
+                    type="email" name="email" id="email" placeholder="example@gmail.com" required
+                    title="Enter a valid email address.">
             </div>
+
+            <!-- Phone Number -->
+            <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold" for="phone">Phone Number</label>
+                <input class="text-xs border dark:bg-transparent outline-[#0f90e6] py-2 px-4 rounded-lg border-gray-300"
+                    type="tel" name="phone" id="phone" placeholder="+92 300 1234567" pattern="^\+?[0-9/s-]{7,15}$"
+                    title="Enter a valid phone number with country code." required>
+            </div>
+
             <!-- Select Service -->
             <div class="flex flex-col gap-2">
                 <label class="text-sm font-semibold" for="select">Service</label>
                 <select
                     class="text-xs text-gray-400 dark:bg-transparent focus:outline-[#0f90e6] outline-offset-0 border py-2 px-4 rounded-lg border-gray-300 outline-none"
-                    name="select" id="select">
-                    <option class="" value="" disabled selected hidden>Select an option</option>
+                    name="select" id="select" required>
+                    <option value="" disabled selected hidden>Select an option</option>
+                    <option value="theme-cloning" disabled selected hidden>Custom Theme Cloning & Conversion</option>
+                    <option value="tailwind-css">Tailwind CSS Integration</option>
+                    <option value="frontend-tooling">Frontend Development with Modern Tooling</option>
+                    <option value="pixel-perfect-ui">Pixel-Perfect UI Replication</option>
+                    <option value="static-to-dynamic">Static to Dynamic Theme Foundation</option>
                 </select>
             </div>
+
+            <!-- Subject -->
+            <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold" for="subject">Subject</label>
+                <input class="text-xs border dark:bg-transparent outline-[#0f90e6] py-2 px-4 rounded-lg border-gray-300" type="text" name="subject" id="subject" placeholder="Project discussion..." required minlength="5" maxlength="100" title="Subject should be between 5 and 100 characters.">
+
+            </div>
+
             <!-- Message -->
             <div class="flex flex-col gap-2">
                 <label class="text-sm font-semibold" for="message">Message</label>
                 <textarea
                     class="text-xs border py-2 dark:bg-transparent outline-[#0f90e6] h-40 px-4 rounded-lg border-gray-300"
-                    name="message" id="message"></textarea>
+                    name="message" id="message" placeholder="Write your message here..." required minlength="10" maxlength="500" title="Message must be between 10 and 500 characters."></textarea>
             </div>
             <!-- Get in Touch -->
             <div class="text-white flex">
