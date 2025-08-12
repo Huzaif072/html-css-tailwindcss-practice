@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" class="">
-
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= htmlWebpackPlugin.options.title %>
-    </title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webpack + Tailwind Starter</title>
 </head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
-<body class="min-h-screen flex flex-col items-center justify-center gap-4 p-4">
-    <p id="count-el" class="text-5xl">0</p>
-    <input type="number" id="step-input" placeholder="Enter Step" class="px-2 bg-gray-200" value="1">
-    <button id="count-btn" class="border px-4 py-2 bg-black text-white">Click Me</button>
-    <button id="reset-btn" class="border px-4 py-2 bg-black text-white">Reset</button>
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <!-- Main Content -->
+  <main class="p-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Reusable Components</h2>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="cards-container"></div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
 </body>
-
 </html>
