@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { sources } = require('webpack');
+const { type } = require('os');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -9,11 +11,27 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name][contenthash].js',
-        assetModuleFilename: '[name][ext]',
+        assetModuleFilename: 'assets/[name][ext]',
         clean: true,
     },
     module: {
         rules: [
+            {
+                test: /\.html$/i,
+                use: [
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            sources: {
+                                list: [
+                                    '...',
+                                    { tag: 'img', attribute: 'src', type: 'src' }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -32,13 +50,13 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src/index.html'),
+            template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
         }),
-        new CopyWebpackPlugin({
-            patterns: [
-                { from: 'src/components', to: 'src/components' }
-            ]
-        })
+        // new CopyWebpackPlugin({
+        //     patterns: [
+        //         { from: './src/components', to: './src/components' }
+        //     ]
+        // })
     ],
 };

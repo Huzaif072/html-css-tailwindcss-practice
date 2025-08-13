@@ -1,26 +1,69 @@
+import announcementBar from './partials/announcementBar.html'
+import header from './partials/header.html';
+import banner from './partials/banner.html';
+import productSection from './partials/product-section.html';
+import productSection2 from './partials/product-section2.html';
+import videoSection from './partials/video-section.html';
+import quoteSection from './partials/quotes-section.html';
+import footer from './partials/footer.html';
+
 import './styles/styles.css';
 
-async function loadComponent(id, path) {
-  const res = await fetch(path);
-  const html = await res.text();
-  document.getElementById(id).innerHTML = html;
-}
+import products from './data/products.js';
+import { createProductCard } from './components/ProductCard.js';
 
-loadComponent("navbar", "./src/components/navbar.html");
-loadComponent("footer", "./src/components/footer.html");
+import products2 from './data/products2.js';
+import { createProductCard2 } from './components/ProductCard2.js';
 
-async function loadCards() {
-  const container = document.getElementById("cards-container");
-  for (let i = 0; i < 6; i++) {
-    const res = await fetch("./src/components/card.html");
-    const html = await res.text();
-    container.innerHTML += html;
-  }
-}
-loadCards();
+import banner1 from './assets/images/bannerimg1.webp';
+import banner2 from './assets/images/bannerimg2.webp';
+import logo from './assets/icons/Dawn_logo.png';
+import videoimage from './assets/images/Mlouye_video.webp';
+import quotelogo1 from './assets/icons/Mlouye_Refinery_logo.png';
+import quotelogo2 from './assets/icons/the-cut-logo2_180x_eb657194-39db-4604-852b-1c97f84255ce.png'
 
-document.addEventListener('click', (e) => {
-  if (e.target.id === 'dark-toggle-btn') {
-    document.documentElement.classList.toggle('dark');
-  }
+document.getElementById('announcement-bar').innerHTML = announcementBar;
+document.getElementById('header').innerHTML = header;
+document.getElementById('banner').innerHTML = banner;
+document.getElementById('product-section').innerHTML = productSection;
+document.getElementById('product-section-2').innerHTML = productSection2;
+document.getElementById('video-section').innerHTML = videoSection;
+document.getElementById('quote-section').innerHTML = quoteSection;
+
+document.getElementById('footer').innerHTML = footer;
+
+
+document.getElementById('bannerimg1').src = banner1;
+document.getElementById('bannerimg2').src = banner2;
+document.getElementById('logo').src = logo;
+document.getElementById('video').src = videoimage;
+document.getElementById('quotelogo1').src = quotelogo1;
+document.getElementById('quotelogo2').src = quotelogo2;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const productsContainer = document.getElementById('products-container');
+  productsContainer.innerHTML = products.map(product => createProductCard(product)).join('');
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('products-container-2');
+
+  const largeItem = products2.find(p => p.layout === "large");
+  const smallItems = products2.filter(p => p.layout !== "large");
+
+  container.innerHTML = `
+    <div class='grid grid-cols-1 grid-rows-2 md:grid-rows-1 md:grid-cols-3 gap-1 md:gap-2 h-full min-h-0'>
+      <div class='md:col-span-2 row-span-2 md:row-span-1 h-full min-h-0'>
+        ${createProductCard2(largeItem)}
+      </div>
+
+      <div class='grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-1 h-full min-h-0'>
+        ${smallItems.map(p => `
+          <div class='h-full min-h-0'>
+            ${createProductCard2(p)}
+          </div>
+          `).join('')}
+      </div>
+    </div>
+  `;
 });

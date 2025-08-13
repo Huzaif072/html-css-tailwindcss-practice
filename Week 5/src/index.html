@@ -1,25 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack + Tailwind Starter</title>
+  <link rel="icon" type="image/png" href="https://cdn.shopify.com/static/shopify-favicon.png">
+  <title>Shopify Dawn Theme</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nata+Sans:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
-  <!-- Navbar -->
-  <div id="navbar"></div>
+<body class="font-open-sans">
+  <!-- Background Images -->
+  <div class='flex fixed bg-gray-400 w-full h-full brightness-50 -z-10'>
+    <img class='w-1/2 h-full object-cover' id="bannerimg1" alt="Banner Image 1" />
+    <img class='w-1/2 h-full object-cover' id="bannerimg2" alt="Banner Image 2" />
+  </div>
 
-  <!-- Main Content -->
-  <main class="p-6 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Reusable Components</h2>
+  <!-- Announcement Bar -->
+  <div class="bg-white" id="announcement-bar"></div>
 
-    <!-- Cards Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="cards-container"></div>
+  <!-- Header -->
+  <header class="bg-white" id="header"></header>
+
+  <main>
+    <!-- Banner -->
+    <div id="banner"></div>
+
+    <!-- Product Section -->
+    <div class="bg-white" id="product-section"></div>
+
+    <!-- Product Section 2 -->
+    <div class="bg-white" id="product-section-2"></div>
+
+    <!-- Video Section -->
+    <div class="bg-white" id="video-section"></div>
+
+    <!-- Quote Section -->
+    <div class="bg-white" id="quote-section"></div>
   </main>
 
   <!-- Footer -->
-  <div id="footer"></div>
-
+  <footer class="bg-white" id="footer"></footer>
 </body>
+
 </html>
