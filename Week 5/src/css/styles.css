@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.footer-link {
+  @apply text-xs text-gray-600 hover:text-black hover:underline underline-offset-3 decoration-1;
+}
+
+.footer-heading {
+  @apply font-semibold text-sm uppercase tracking-wide;
+}
+
+.footer-col {
+  @apply flex flex-col tracking-wider gap-8;
+}

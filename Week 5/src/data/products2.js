@@ -1,4 +1,4 @@
-import product9 from '../assets/images/Product9.jpg';
+import product9 from '../assets/images/Product9.webp';
 import product10 from '../assets/images/Product10.webp';
 import product11 from '../assets/images/Product11.webp';
 
