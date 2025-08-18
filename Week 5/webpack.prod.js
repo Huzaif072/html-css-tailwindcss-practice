@@ -1,9 +1,14 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+import { merge } from 'webpack-merge';
+import common from './webpack.common.js';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-module.exports = merge(common, {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default merge(common, {
     mode: 'production',
     module: {
         rules: [
@@ -18,7 +23,7 @@ module.exports = merge(common, {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            postcssOptions: require('./postcss.config.js'),
+                            postcssOptions: (await import('./postcss.config.js')).default,
                         },
                     },
                 ],
