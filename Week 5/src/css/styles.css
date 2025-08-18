@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@theme {
+  /* Dark mode is now toggled in HTML with class="dark" */
+  --color-darkBg: #121212;
+
+  /* Fonts */
+  --font-open-sans: "Open Sans", sans-serif;
+
+  /* Font sizes */
+  --text-xs: 0.75rem;
+}
+
+
 .footer-link {
   @apply text-xs text-gray-600 hover:text-black hover:underline underline-offset-3 decoration-1;
 }
@@ -10,4 +22,12 @@
 
 .footer-col {
   @apply flex flex-col tracking-wider gap-8;
+}
+
+.footer-social-media-icon {
+  @apply w-6 h-auto;
+}
+
+.footer-cards-icon {
+  @apply w-9 h-auto;
 }

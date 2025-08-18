@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://cdn.shopify.com/static/shopify-favicon.png">
+    <title>Shopify Dawn Theme</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nata+Sans:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="font-open-sans">
+    <!-- Announcement Bar -->
+    <div id="announcement-bar-placeholder"></div>
+
+    <!-- Header -->
+    <header class="bg-white" id="header-placeholder"></header>
+
+    <main class="flex flex-col border-t items-center justify-center border-gray-200">
+        <h1 class="text-4xl tracking-wide py-10">Login</h1>
+        <form class="flex flex-col gap-4">
+            <input class="border-[1.5px] w-[27rem] placeholder:text-gray-600 px-5 py-3 border-gray-400 tracking-wide text-sm" type="email" name="email" id="email" placeholder="Email" required>
+            <input class="border-[1.5px] w-[27rem] placeholder:text-gray-600 px-5 py-3 border-gray-400 tracking-wide text-sm" type="password" name="password" id="password" placeholder="Password" required minlength="8" maxlength="15">
+            <a class="underline text-xs text-gray-800 tracking-widest underline-offset-3" href="#">Forgot your password?</a>
+            <button class="bg-black text-white px-8 sm:w-auto py-4 tracking-widest text-xs self-center" type="submit">Sign in</button>
+            <a class="underline underline-offset-3 text-gray-800 tracking-widest self-center text-xs" href="#">Create account</a>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white" id="footer-placeholder"></footer>
+
+    <script type="module" src="../js/pages/login.js"></script>
+</body>
+
+</html>

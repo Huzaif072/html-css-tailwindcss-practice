@@ -3,7 +3,8 @@
 
     module.exports = {
         entry: {
-            home: path.resolve(__dirname, 'src/js/pages/index.js')
+            home: path.resolve(__dirname, 'src/js/pages/home.js'),
+            login: path.resolve(__dirname, 'src/js/pages/login.js')
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
@@ -47,9 +48,14 @@
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: path.resolve(__dirname, './src/pages/index.html'),
-                filename: 'index.html',
+                template: path.resolve(__dirname, './src/pages/home.html'),
+                filename: 'home.html',
                 chunks: ['home'],
+            }),
+            new HtmlWebpackPlugin({
+                template: path.resolve(__dirname, './src/pages/login.html'),
+                filename: 'login.html',
+                chunks: ['login'],
             }),
         ],
     };
