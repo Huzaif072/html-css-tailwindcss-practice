@@ -8,7 +8,8 @@ const __dirname = path.dirname(__filename);
 export default {
     entry: {
         home: path.resolve(__dirname, 'src/js/pages/home.js'),
-        login: path.resolve(__dirname, 'src/js/pages/login.js')
+        login: path.resolve(__dirname, 'src/js/pages/login.js'),
+        cart: path.resolve(__dirname, 'src/js/pages/cart.js')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -60,6 +61,11 @@ export default {
             template: path.resolve(__dirname, './src/pages/login.html'),
             filename: 'login.html',
             chunks: ['login'],
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/pages/cart.html'),
+            filename: 'cart.html',
+            chunks: ['cart'],
         }),
     ],
 };
