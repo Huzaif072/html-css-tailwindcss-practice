@@ -85,5 +85,40 @@ export async function handleUserRoutes(req: IncomingMessage, res: ServerResponse
         return true;
     }
 
+    if (pathname === "/user" && req.method === "PUT") {
+        let body = "";
+        req.on("data", chunk => (body += chunk.toString()));
+        req.on("end", async () => {
+            try {
+                const updatedUser = JSON.parse(body);
+                const name = query.name as string;
+
+                if(!name) {
+                    sendError(res, 400, "Please provide ?name=ExistingName to update");
+                    return;
+                }
+
+                let users = await readJsonFile(usersPath, []);
+                const index = users.findIndex((u: any) => u.name === name);
+
+                if (index === -1) {
+                    sendError(res, 404, "User not found");
+                    return;
+                }
+
+                users[index] = { ...users[index], ...updatedUser };
+                await writeJsonFile(usersPath, users);
+
+                res.writeHead(200, { "content-type": "application/json" });
+                res.end(JSON.stringify({ message: `User ${name} updated`, user: users[index] }));
+            } catch {
+                sendError(res, 400, "Invalid JSON");
+                return;
+            }
+        });
+
+        return true;
+    }
+
     return false;
 }
