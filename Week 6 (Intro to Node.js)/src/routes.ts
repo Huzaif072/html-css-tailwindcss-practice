@@ -2,11 +2,12 @@ import { IncomingMessage, ServerResponse } from "http";
 import { parse } from "url";
 import { sendError } from "./utils/errorHandler";
 
-import { handleGeneralRoutes } from "./controllers/general";
-import { handleUserRoutes } from "./controllers/users";
-import { handleTaskRoutes } from "./controllers/tasks";
-import { handleFileRoutes } from "./controllers/file";
-import { handleCounterRoutes } from "./controllers/counter";
+import { handleGeneralRoutes } from "./routes/generalRoutes";
+import { handleUserRoutes } from "./routes/userRoutes";
+import { handleTaskRoutes } from "./routes/taskRoutes";
+import { handleFileRoutes } from "./routes/fileRoutes";
+import { handleCounterRoutes } from "./routes/counterRoutes";
+
 import { logRequest } from "./utils/logger";
 
 export async function handleRoutes(req: IncomingMessage, res: ServerResponse) {
@@ -14,25 +15,15 @@ export async function handleRoutes(req: IncomingMessage, res: ServerResponse) {
 
     await logRequest(req.method, req.url);
 
-    // 1. General Routes
-    const generalHandled = await handleGeneralRoutes(req, res, parsedUrl);
-    if (generalHandled) return;
+    if (await handleGeneralRoutes(req, res, parsedUrl)) return;
 
-    // 2. File Routes
-    const fileHandled = await handleFileRoutes(req, res, parsedUrl);
-    if (fileHandled) return;
+    if (await handleFileRoutes(req, res, parsedUrl)) return;
 
-    // 3. Counter Routes
-    const counterHandled = await handleCounterRoutes(req, res, parsedUrl);
-    if (counterHandled) return;
+    if (await handleCounterRoutes(req, res, parsedUrl)) return;
 
-    // 4. User Routes
-    const userHandled = await handleUserRoutes(req, res, parsedUrl);
-    if (userHandled) return;
+    if (await handleUserRoutes(req, res, parsedUrl)) return;
 
-    // 5. Task Routes
-    const taskHandled = await handleTaskRoutes(req, res, parsedUrl);
-    if (taskHandled)  return;
+    if (await handleTaskRoutes(req, res, parsedUrl)) return;
 
     sendError(res, 404, "Route not found");
 }

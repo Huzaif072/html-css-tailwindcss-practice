@@ -1,25 +1,26 @@
 {
-  "name": "week-6-intro-to-nodejs",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "week-7-express.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts"
+    "start": "node dist/app.js",
+    "dev": "ts-node src/server.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^17.2.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1"
+  },
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/morgan": "^1.9.10",
     "@types/node": "^24.3.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
-  },
-  "dependencies": {
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0"
   }
 }

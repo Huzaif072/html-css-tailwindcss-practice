@@ -7,3 +7,6 @@
 [2025-08-20T03:40:27.494Z] PUT /write-user
 [2025-08-20T03:40:59.009Z] PUT /user?name=Ali
 [2025-08-20T03:41:14.942Z] DELETE /user?name=Ali
+[2025-08-20T06:13:47.907Z] DELETE /write-user
+[2025-08-20T06:13:53.874Z] POST /write-user
+[2025-08-20T06:14:08.891Z] DELETE /user?name=Ali
