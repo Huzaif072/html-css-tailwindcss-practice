@@ -1,13 +1,9 @@
 import express from 'express';
 const router = express.Router();
 
-/* GET users listing. */
-router.get('/', (req, res, next) => {
-  res.send('respond with a resource');
-});
-
-router.get('/cool', (req, res, next) => {
-  res.send('You\'re so cool')
+// Example user API endpoint
+router.get('/', (req, res) => {
+  res.json({ message: 'User API endpoint' });
 });
 
 export default router;

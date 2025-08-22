@@ -2,116 +2,114 @@ import Author from "../models/author.js";
 import Book from "../models/book.js";
 import { body, validationResult } from "express-validator";
 
-// Display list of all Authors.
-
+// List all authors
 export const author_list = async (req, res, next) => {
+  try {
     const allAuthors = await Author.find().sort({ family_name: 1 }).exec();
-    res.render("author_list", {
-        title: "Author List",
-        author_list: allAuthors,
-    });
+    res.json(allAuthors);
+  } catch (err) {
+    next(err);
+  }
 };
 
-// Display detail page for a specific Author.
+// Author detail
 export const author_detail = async (req, res, next) => {
+  try {
     const [author, allBooksByAuthor] = await Promise.all([
-        Author.findById(req.params.id).exec(),
-        Book.find({ author: req.params.id }, "title summary").exec(),
+      Author.findById(req.params.id).exec(),
+      Book.find({ author: req.params.id }, "title summary").exec(),
     ]);
-
-    if (author === null) {
-        const err = new Error("Author not found");
-        err.status = 404;
-        return next(err);
+    if (!author) {
+      return res.status(404).json({ message: "Author not found" });
     }
-
-    res.render("author_detail", {
-        title: "Author Detail",
-        author,
-        author_books: allBooksByAuthor,
-    });
+    res.json({ author, books: allBooksByAuthor });
+  } catch (err) {
+    next(err);
+  }
 };
 
-// Display Author create form on GET.
-export const author_create_get = async (req, res, next) => {
-    res.render("author_form", { title: "Create Author" });
-};
+// Create author (POST /api/authors)
+export const author_create = [
+  body("first_name")
+    .trim()
+    .isLength({ min: 1 }).withMessage("First name must be specified.")
+    .isAlphanumeric().withMessage("First name has non-alphanumeric characters."),
+  body("family_name")
+    .trim()
+    .isLength({ min: 1 }).withMessage("Family name must be specified.")
+    .isAlphanumeric().withMessage("Family name has non-alphanumeric characters."),
+  body("date_of_birth", "Invalid date of birth")
+    .optional({ values: "falsy" })
+    .isISO8601()
+    .toDate(),
+  body("date_of_death", "Invalid date of death")
+    .optional({ values: "falsy" })
+    .isISO8601()
+    .toDate(),
 
-// Handle Author create on POST.
-export const author_create_post = [
-    body("first_name").trim().isLength({ min: 1 }).escape().withMessage("First name must be specified.").isAlphanumeric().withMessage("First name has non-alphanumeric characters."),
-    body("family_name").trim().isLength({ min: 1 }).escape().withMessage("Family name must be specified.").isAlphanumeric().withMessage("Family name has non-alphanumeric characters."),
-    body("date_of_birth", "Invalid date of birth").optional({ values: "falsy" }).isISO8601().toDate(),
-    body("date_of_death", "Invalid date of death").optional({ values: "falsy" }).isISO8601().toDate(),
-
-    async (req, res, next) => {
+  async (req, res, next) => {
     const errors = validationResult(req);
-
-    const author = new Author({
-        first_name: req.body.first_name,
-        family_name: req.body.family_name,
-        date_of_birth: req.body.date_of_birth,
-        date_of_death: req.body.date_of_death,
-    });
+    const author = new Author(req.body);
 
     if (!errors.isEmpty()) {
-        res.render("author_form", {
-            title: "Create Author",
-            author,
-            errors: errors.array(),
-        });
-        return;
+      return res.status(400).json({ errors: errors.array(), author });
     }
-
-    await author.save();
-    res.redirect(author.url);
-}];
-
-// Display Author delete form on GET.
-export const author_delete_get = async (req, res, next) => {
-    const [author, allBooksByAuthor] = await Promise.all([
-        Author.findById(req.params.id).exec(),
-        Book.find({ author: req.params.id }, "title summary").exec(),
-    ]);
-
-    if (author == null) {
-        res.redirect("/catalog/authors");
-        return;
+    try {
+      await author.save();
+      res.status(201).json(author);
+    } catch (err) {
+      next(err);
     }
+  },
+];
 
-    res.render("author_delete", {
-        title: "Delete Author",
-        author,
-        author_books: allBooksByAuthor,
-    });
-};
-
-// Handle Author delete on POST.
-export const author_delete_post = async (req, res, next) => {
-    const [author, allBooksByAuthor] = await Promise.all([
-        Author.findById(req.params.id).exec(),
-        Book.find({ author: req.params.id }, "title summary").exec(),
-    ]);
-
-    if (allBooksByAuthor.length > 0) {
-        res.resend("author_delete", {
-            title: "Delete Author",
-            author,
-            author_books: allBooksByAuthor,
-        });
-        return;
+// Delete author (DELETE /api/authors/:id)
+export const author_delete = async (req, res, next) => {
+  try {
+    const author = await Author.findByIdAndDelete(req.params.id);
+    if (!author) {
+      return res.status(404).json({ message: "Author not found" });
     }
-
-    await Author.findByIdAndDelete(req.body.authorid);
-    res.redirect("/catalog/authors");
+    res.json({ message: "Author deleted", author });
+  } catch (err) {
+    next(err);
+  }
 };
 
-// Display Author update form on GET.
-export const author_update_get = async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author update GET");
-};
+// Update author (PUT /api/authors/:id)
+export const author_update = [
+  body("first_name")
+    .trim()
+    .isLength({ min: 1 }).withMessage("First name must be specified.")
+    .isAlphanumeric().withMessage("First name has non-alphanumeric characters."),
+  body("family_name")
+    .trim()
+    .isLength({ min: 1 }).withMessage("Family name must be specified.")
+    .isAlphanumeric().withMessage("Family name has non-alphanumeric characters."),
+  body("date_of_birth", "Invalid date of birth")
+    .optional({ values: "falsy" })
+    .isISO8601()
+    .toDate(),
+  body("date_of_death", "Invalid date of death")
+    .optional({ values: "falsy" })
+    .isISO8601()
+    .toDate(),
 
-// Handle Author update on POST.
-export const author_update_post = async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Author update POST");
-};
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    const authorData = req.body;
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array(), author: authorData });
+    }
+    try {
+      const updatedAuthor = await Author.findByIdAndUpdate(req.params.id, authorData, { new: true });
+      if (!updatedAuthor) {
+        return res.status(404).json({ message: "Author not found" });
+      }
+      res.json(updatedAuthor);
+    } catch (err) {
+      next(err);
+    }
+  },
+];

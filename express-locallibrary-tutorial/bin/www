@@ -14,7 +14,7 @@ const debug = debugLib('express-locallibrary-tutorial:server');
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);
 
 // Import the mongoose module
@@ -23,34 +23,27 @@ import mongoose from 'mongoose';
 mongoose.set("strictQuery", false);
 const mongoDB = "mongodb://127.0.0.1:27017/local_library";
 
-async function connectMongoose() {
-  await mongoose.connect(mongoDB);
-}
-
-try {
-  connectMongoose();
-} catch (err) {
-  console.error("Failed to connect to MongoDB:", err);
-  process.exit(1);
-}
-
 /**
  * Create HTTP server.
  */
 
 const server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+async function startServer() {
+  try {
+    await mongoose.connect(mongoDB);
+    console.log("Connected to MongoDB");
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+  } catch (err) {
+    console.error("Failed to connect to MongoDB:", err);
+    process.exit(1);
+  }
+}
 
-/**
- * Normalize a port into a number, string, or false.
- */
+startServer();
 
 function normalizePort(val) {
   const port = parseInt(val, 10);

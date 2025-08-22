@@ -17,7 +17,7 @@ AuthorSchema.virtual("name").get(function () {
 
 // Virtual for author's URL
 AuthorSchema.virtual("url").get(function () {
-    return `/catalog/author/${this._id}`;
+    return "/catalog/author/" + this._id;
 });
 
 AuthorSchema.virtual("lifespan").get(function () {
