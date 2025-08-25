@@ -1,67 +1,92 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import path from "path";
-import { sendError } from "../utils/errorHandler";
 import { readJsonFile, writeJsonFile } from "../utils/fileHelper";
 
-const usersPath = path.join(__dirname, "..", "files", "users.json");
+const usersPath = path.join(__dirname, "..", "..", "files", "users.json");
 
-export async function createUser(req: Request, res: Response) {
-    const user = req.body;
+export const createUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user = req.body;
 
-    if (!user.name || !user.email) {
-        return sendError(res, 400, "Missing required fields: name, email");
+        if (!user.name || !user.email) {
+            return res.status(400).json({ error: "Missing required fields: name, email" });
+        }
+
+        const users = await readJsonFile(usersPath, []);
+        
+        const existingUser = users.find((u: any) => u.name === user.name);
+        if(existingUser) {
+            return res.status(409).json({ error: "User with this name already exists" });
+        }
+
+        users.push(user);
+        await writeJsonFile(usersPath, users);
+
+        res.status(201).json({ message: "User saved!", user });
+    } catch (err) {
+        next(err);
     }
-
-    const users = await readJsonFile(usersPath, []);
-    users.push(user);
-    await writeJsonFile(usersPath, user);
-
-    res.status(201).json({ message: "User saved!", user });
 }
 
-export async function getUsers(req: Request, res: Response) {
-    const users = await readJsonFile(usersPath, []);
-    res.json(users);
-}
-
-export async function getUser(req: Request, res: Response) {
-    const name = req.query.name as string;
-    if (!name) return sendError(res, 400, "Please provide ?name=Ali");
-
-    const users = await readJsonFile(usersPath, []);
-    const user = users.find((u: any) => u.name === name);
-
-    if (!user) return sendError(res, 404, "User not found");
-    res.json(user);
-}
-
-export async function deleteUser(req: Request, res: Response) {
-    const name = req.query.name as string;
-    if(!name) return sendError(res, 400, "Please provide ?name=Ali");
-
-    let users = await readJsonFile(usersPath, []);
-    const filtered = users.filter((u: any) => u.name !== name);
-
-    if(filtered.length === users.length) {
-        return sendError(res, 404, "User not found");
+export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const users = await readJsonFile(usersPath, []);
+        res.json(users);
+    } catch (err) {
+        next(err);
     }
-
-    await writeJsonFile(usersPath, filtered);
-    res.json({ message: `User ${name} deleted` });
 }
 
-export async function updateUser(req: Request, res: Response) {
-    const name = req.query.name as string;
-    const updatedUser = req.body;
+export const getUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const name = req.query.name as string;
+        if (!name) return res.status(400).json({ error: "Please provide ?name=userName" });
 
-    if(!name) return sendError(res, 400, "Please provide ?name=ExistingName to update");
+        const users = await readJsonFile(usersPath, []);
+        const user = users.find((u: any) => u.name === name);
 
-    let users = await readJsonFile(usersPath, []);
-    const index = users.findIndex((u: any) => u.name === name);
+        if (!user) return res.status(404).json({ error: "User not found" });
+        res.json(user);
+    } catch (err) {
+        next(err);
+    }
+}
 
-    if (index === -1) return sendError(res, 404, "User not found");
+export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const name = req.query.name as string;
+        if (!name) return res.status(400).json({ error: "Please provide ?name=userName" });
 
-    users[index] = { ...users[index], ...updatedUser };
-    await writeJsonFile(usersPath, users);
-    res.json({ message: `User ${name} updated`, user: users[index] });
+        let users = await readJsonFile(usersPath, []);
+        const filtered = users.filter((u: any) => u.name !== name);
+
+        if (filtered.length === users.length) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        await writeJsonFile(usersPath, filtered);
+        res.json({ message: `User ${name} deleted` });
+    } catch (err) {
+        next(err);
+    }
+}
+
+export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const name = req.query.name as string;
+        const updatedUser = req.body;
+
+        if (!name) return res.status(400).json({ error: "Please provide ?name=ExistingName to update" });
+
+        let users = await readJsonFile(usersPath, []);
+        const index = users.findIndex((u: any) => u.name === name);
+
+        if (index === -1) return res.status(404).json({ error: "User not found" });
+
+        users[index] = { ...users[index], ...updatedUser };
+        await writeJsonFile(usersPath, users);
+        res.json({ message: `User ${name} updated`, user: users[index] });
+    } catch (err) {
+        next(err);
+    }
 }

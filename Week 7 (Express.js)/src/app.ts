@@ -1,42 +1,42 @@
-import express, { Application } from "express";
+import createError from 'http-errors';
+import express, { Request, Response, NextFunction} from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 import dotenv from "dotenv";
-import morgan from "morgan";
 
-import generalRoutes from "./routes/generalRoutes";
-import fileRoutes from "./routes/fileRoutes";
-import counterRoutes from "./routes/counterRoutes";
-import taskRoutes from "./routes/taskRoutes";
-import userRoutes from "./routes/userRoutes";
-import { logRequest, requestLogger } from "./utils/logger";
-import { sendError } from "./utils/errorHandler";
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
+import routes from './routes/routes'
 
+const app = express();
 dotenv.config();
 
-const app: Application = express();
-
-
-// Middleware
+app.use(logger('dev'));
 app.use(express.json());
-app.use(requestLogger);
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Custom request logger
-app.use((req, res, next) => {
-    logRequest(req.method, req.url);
-    next();
+app.use('/index', indexRouter);
+app.use('/users', usersRouter);
+app.use('/', routes);
+
+// catch 404 and forward to error handler
+app.use(function(req: Request, res: Response, next: NextFunction) {
+  next(createError(404));
 });
 
-// Routes
-app.use("/", generalRoutes);
-app.use("/", fileRoutes);
-app.use("/", counterRoutes);
-app.use("/", taskRoutes);
-app.use("/", userRoutes);
+// error handler
+app.use(function(err: any, req: Request, res: Response, next: NextFunction) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-// Fallback 404
-app.use((req, res) => {
-    sendError(res, 404, "Route not found");
+  // render the error page
+  res.status(err.status || 500).json({
+    error: err.message || "Internal Server Error",
+  });
 });
 
 export default app;

@@ -1,10 +1,18 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
-export function home(req: Request, res: Response) {
-    res.type("text/plain").send("Hello Node!");
+export const home = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        res.type("text/plain").send("Hello Node!");
+    } catch (err) {
+        next(err);
+    }
 }
 
-export function greeting (req: Request, res: Response) {
-    const name = process.env.NAME || "Guest";
-    res.json({ greeting: `Hello, ${name} `});
+export const greeting = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const name = process.env.NAME || "Guest";
+        res.json({ greeting: `Hello, ${name} `});
+    } catch (err) {
+        next(err);
+    }
 }

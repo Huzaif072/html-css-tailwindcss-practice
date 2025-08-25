@@ -1,11 +1,10 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import path from "path";
-import { promises as fs, read } from "fs";
-import { sendError } from "../utils/errorHandler";
+import { promises as fs } from "fs";
 
-const countFile = path.join(__dirname, "..", "files", "count.txt");
+const countFile = path.join(__dirname, "..", "..", "files", "count.txt");
 
-export async function incrementCounter(req: Request, res: Response) {
+export const incrementCounter = async (req: Request, res: Response, next: NextFunction) => {
     try {
         let count = 0;
         try {
@@ -19,7 +18,7 @@ export async function incrementCounter(req: Request, res: Response) {
         await fs.writeFile(countFile, count.toString());
 
         res.json({ count });
-    } catch {
-        sendError(res, 500, "Could not read/write count");
+    } catch(err) {
+        next(err);
     }
 }

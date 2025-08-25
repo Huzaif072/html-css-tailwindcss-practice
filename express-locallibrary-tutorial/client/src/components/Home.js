@@ -142,7 +142,7 @@ const Home = () => {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">
-                <i className="fas fa-check-circle text-success me-2"></i>
+                <i className="fas fa-check-circle text-success"></i>
                 Available Books
               </h5>
               <h2 className="text-success">{stats.availableInstances}</h2>
@@ -186,9 +186,9 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-              
+
               <hr />
-              
+
               <div className="row">
                 <div className="col-md-3 mb-2">
                   <Link to="/books/create" className="btn btn-success btn-block w-100">
