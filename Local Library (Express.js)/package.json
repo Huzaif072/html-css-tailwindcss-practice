@@ -1,0 +1,33 @@
+{
+  "name": "express-locallibrary-tutorial",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "serverstart": "cross-env DEBUG=express-locallibrary-tutorial:* npm run devstart",
+    "server": "nodemon ./bin/www",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-client": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run install-client && npm run build"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "debug": "^4.4.1",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "http-errors": "~2.0.0",
+    "luxon": "^3.7.1",
+    "mongoose": "^8.17.2",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "cross-env": "^10.0.0",
+    "nodemon": "^3.1.10",
+    "concurrently": "^8.2.2"
+  }
+}
