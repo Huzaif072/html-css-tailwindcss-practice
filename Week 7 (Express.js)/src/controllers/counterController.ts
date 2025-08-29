@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import path from "path";
 import { promises as fs } from "fs";
 
-const countFile = path.join(__dirname, "..", "..", "files", "count.txt");
+const countFile = path.join(__dirname, "..", "files", "count.txt");
 
 export const incrementCounter = async (req: Request, res: Response, next: NextFunction) => {
     try {

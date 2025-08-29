@@ -19,14 +19,17 @@ router.get("/file", fileController.readFileMessage);``
 router.get("/write", fileController.writeFileMessage);
 
 // TASK ROUTES
-router.post("/add-task", taskController.addTask);
 router.get("/tasks", taskController.getTasks);
+router.post("/tasks", taskController.addTask);
+router.get("/tasks/:id", taskController.getTask);
+router.put("/tasks/:id", taskController.updateTask);
+router.delete("/tasks/:id", taskController.deleteTask);
 
 // USER ROUTES
-router.post("/write-user", userController.createUser);
+router.post("/users", userController.createUser);
 router.get("/users", userController.getUsers);
-router.get("/user", userController.getUser);
-router.delete("/user", userController.deleteUser);
-router.put("/user", userController.updateUser);
+router.get("/users/:id", userController.getUser);
+router.delete("/users/:id", userController.deleteUser);
+router.put("/users/:id", userController.updateUser);
 
 export default router;

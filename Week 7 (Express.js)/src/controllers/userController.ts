@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import path from "path";
 import { readJsonFile, writeJsonFile } from "../utils/fileHelper";
 
-const usersPath = path.join(__dirname, "..", "..", "files", "users.json");
+const usersPath = path.join(__dirname, "..", "files", "users.json");
 
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -39,54 +39,50 @@ export const getUsers = async (req: Request, res: Response, next: NextFunction) 
 
 export const getUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const name = req.query.name as string;
-        if (!name) return res.status(400).json({ error: "Please provide ?name=userName" });
-
+        const id = req.params.id;
         const users = await readJsonFile(usersPath, []);
-        const user = users.find((u: any) => u.name === name);
 
+        const user = users.find((u: any) => String(u.id) === id);
         if (!user) return res.status(404).json({ error: "User not found" });
+
         res.json(user);
     } catch (err) {
         next(err);
     }
-}
+};
 
 export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const name = req.query.name as string;
-        if (!name) return res.status(400).json({ error: "Please provide ?name=userName" });
-
+        const id = req.params.id;
         let users = await readJsonFile(usersPath, []);
-        const filtered = users.filter((u: any) => u.name !== name);
 
+        const filtered = users.filter((u: any) => String(u.id) !== id);
         if (filtered.length === users.length) {
             return res.status(404).json({ error: "User not found" });
         }
 
         await writeJsonFile(usersPath, filtered);
-        res.json({ message: `User ${name} deleted` });
+        res.json({ message: `User with id ${id} deleted` });
     } catch (err) {
         next(err);
     }
-}
+};
 
 export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const name = req.query.name as string;
+        const id = req.params.id;
         const updatedUser = req.body;
 
-        if (!name) return res.status(400).json({ error: "Please provide ?name=ExistingName to update" });
-
         let users = await readJsonFile(usersPath, []);
-        const index = users.findIndex((u: any) => u.name === name);
+        const index = users.findIndex((u: any) => String(u.id) === id);
 
         if (index === -1) return res.status(404).json({ error: "User not found" });
 
         users[index] = { ...users[index], ...updatedUser };
         await writeJsonFile(usersPath, users);
-        res.json({ message: `User ${name} updated`, user: users[index] });
+
+        res.json({ message: `User ${id} updated`, user: users[index] });
     } catch (err) {
         next(err);
     }
-}
+};

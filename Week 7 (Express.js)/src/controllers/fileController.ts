@@ -2,8 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import path from "path";
 import { promises as fs } from "fs";
 
-const messageFile = path.join(__dirname, "..", "..", "files", "message.txt");
-const logFile = path.join(__dirname, "..", "..", "files", "log.txt");
+const messageFile = path.join(__dirname, "..", "files", "message.txt");
+const logFile = path.join(__dirname, "..", "files", "log.txt");
 
 export const readFileMessage = async (req: Request, res: Response, next: NextFunction) => {
     try {
